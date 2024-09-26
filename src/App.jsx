@@ -12,12 +12,20 @@ function App() {
   });
   useEffect(() => {
     const fetchData = async () => {
+      console.log("initial useEffect running");
       setCars(initialCarData);
+      return () => {
+        console.log("cleaning [] useEffect");
+      };
     };
     fetchData();
   }, []);
   useEffect(() => {
+    console.log("[cars] state changed! triggering useEffect...");
     console.log(cars);
+    return () => {
+      console.log("cleaning [cars] useEffect");
+    };
   }, [cars]);
 
   const getNewId = () => {
